@@ -1,12 +1,10 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.Functions.Worker;
-using Microsoft.Extensions.Logging;
-using System.Runtime.CompilerServices;
 using Microsoft.EntityFrameworkCore;
 
-namespace AzureFunctionsCRUDApi.Api.Product 
-{ 
+namespace AzureFunctionsCRUDApi.Api.Product
+{
     public class GetJobs
     {
         private readonly JobDBContext jobDBContext;
@@ -18,7 +16,7 @@ namespace AzureFunctionsCRUDApi.Api.Product
         [Function("GetJobs")]
         public async Task<IActionResult> Run([HttpTrigger(AuthorizationLevel.Anonymous, "get")] HttpRequest req)
         {
-            var jobs= await jobDBContext.Job.ToListAsync();
+            var jobs = await jobDBContext.Job.OrderBy(j => j.Name).ToListAsync();
             return new OkObjectResult(jobs);
         }
     }

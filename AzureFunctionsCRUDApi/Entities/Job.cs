@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using AzureFunctionsCRUDApi.Interfaces;
 
 namespace AzureFunctionsCRUDApi.Entities
 {
-    public class Job
+    public class Job : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

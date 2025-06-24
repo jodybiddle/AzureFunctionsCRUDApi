@@ -22,8 +22,8 @@ Id int identity(1, 1) primary key,
 JobId int not null,
 EmployeeId int not null,
 unique (JobId, EmployeeId),
-foreign key (JobId) references dbo.Job(Id),
-foreign key (EmployeeId) references dbo.Employee(Id)
+foreign key (JobId) references dbo.Job(Id) ON DELETE CASCADE,
+foreign key (EmployeeId) references dbo.Employee(Id) ON DELETE CASCADE
 );
 
 insert dbo.Job(Name, Budget, Comment) values ('Plant A Refit', $1000000, 'Big plant refit, 24 month project');

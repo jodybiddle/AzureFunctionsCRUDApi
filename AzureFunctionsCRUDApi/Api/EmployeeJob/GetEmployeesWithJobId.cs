@@ -24,8 +24,16 @@ namespace AzureFunctionsCRUDApi.Api.Product
                 from ej in jobDBContext.EmployeeJob
                 join e in jobDBContext.Employee on ej.EmployeeId equals e.Id
                 where ej.JobId == jobId
-                select e
-            ).ToListAsync();
+                select new
+                {
+                    EmployeeJobId = ej.Id,
+                    EmployeeId = e.Id,
+                    e.Name,
+                    e.Salary,
+                    e.Skill,
+                    e.Comment
+                }
+            ).OrderBy(e => e.Name).ToListAsync();
 
             return new OkObjectResult(employees);
         }

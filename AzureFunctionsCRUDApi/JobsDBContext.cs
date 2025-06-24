@@ -27,6 +27,5 @@ namespace AzureFunctionsCRUDApi
                 .HasPrecision(14, 2); // Set precision and scale for decimal
         }
     }
-    
+
 }
-    
